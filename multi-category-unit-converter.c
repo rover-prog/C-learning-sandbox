@@ -1,32 +1,12 @@
 #include <stdio.h>
-// --- UNIT CONVERTER ---
-// 1. Temperature
-// 2. Mass
-// 3. Length
-// 4. Exit
-// Select category: 2
 
-// --- MASS CONVERTER ---
-// 1. Kg to Pounds
-// 2. Pounds to Kg
-// Select conversion: 1
-
-// Enter mass in Kg: 10
-// Result: 10.00 Kg is equal to 22.05 Pounds.
-
-// ... (Program returns to Main Menu) ...
-// Temperature funnctions
-float FahToCel(float a);
-float CelToFah(float a);
-float KelToCel(float a);
-float CelToKel(float a);
-float FahToKel(float a);
-float KelToFah(float a);
-
+float TempConFn(float a, int b);
+int AbsoluteTemperatureCheck(int a, int b);
 void PrintMenu();
 void TemperatureConversion();
 void MassConversion();
 void LengthConversion();
+
 int main()
 {
     do
@@ -56,30 +36,42 @@ int main()
 
     return 0;
 }
-float FahToCel(float a)
+float TempConFn(float a, int b)
 {
-    return ((a - 32) / 1.8);
+    switch (b)
+    {
+    case 1:
+        return ((a * 1.8) + 32);
+        break;
+    case 2:
+        return ((a - 32) / 1.8);
+        break;
+    case 3:
+        return (a + 273.15);
+        break;
+    case 4:
+        return (a - 273.15);
+        break;
+    case 5:
+        return (TempConFn(a, 2) + 273.15);
+        break;
+    case 6:
+        return (TempConFn(a, 4), 1);
+        break;
+    }
 }
-float CelToFah(float a)
+int AbsoluteTemperatureCheck(int a, int b)
 {
-    return ((a * 1.8) + 32);
+    if ((a < 0 && (b == 4 || b == 6)) || (a < -273.15 && (b == 1 || b == 3)) || (a < -459.67 && (b == 2 || b == 5)))
+    {
+        return -1;
+    }
+    else
+    {
+        return 1;
+    }
 }
-float KelToCel(float a)
-{
-    return (a - 273.15);
-}
-float CelToKel(float a)
-{
-    return (a + 273.15);
-}
-float FahToKel(float a)
-{
-    return (FahToCel(a) + 273.15);
-}
-float KelToFah(float a)
-{
-    return CelToFah(KelToCel(a));
-}
+
 void PrintMenu()
 {
     printf("\n\t--- Unit Converter ---\n\t1. Temperature\n\t2. Mass\n\t3. Length\n\t4. Exit\n");
@@ -92,54 +84,37 @@ void TemperatureConversion()
     printf("5. Fahrenheit to Kelvin\n\t6. Kelvin to Fahrenheit\n");
     printf("Select conversion: ");
     int option;
-    float temperature;
     scanf("%d", &option);
-    switch (option)
+    float temperature;
+    printf("Enter the temperature: ");
+    scanf("%f", &temperature);
+    if (AbsoluteTemperatureCheck(temperature, option) != -1)
     {
-    case 1:
-        printf("Enter temperature in Celsius: ");
-        scanf("%f", &temperature);
-        printf("\n\nResult: %.2f Celsius equal to %.2f Fahrenheit\n\n", temperature, CelToFah(temperature));
-        break;
-    case 2:
-        printf("Enter temperature in Fahrenheit: ");
-        scanf("%f", &temperature);
-        printf("\n\nResult: %.2f Fahrenheit equal to %.2f Celsius\n\n", temperature, FahToCel(temperature));
-        break;
-    case 3:
-        printf("Enter temperature in Celsius: ");
-        scanf("%f", &temperature);
-        printf("\n\nResult: %.2f Celsius equal to %.2f Kelvin\n\n", temperature, CelToKel(temperature));
-        break;
-    case 4:
-        printf("Enter temperature in Kelvin: ");
-        scanf("%f", &temperature);
-        if (temperature < 0)
+        switch (option)
         {
-            printf("Invalid input...\n");
+        case 1:
+            printf("\n\nResult: %.2f Celsius equal to %.2f Fahrenheit\n\n", temperature, TempConFn(temperature, 1));
+            break;
+        case 2:
+            printf("\n\nResult: %.2f Fahrenheit equal to %.2f Celsius\n\n", temperature, TempConFn(temperature, 2));
+            break;
+        case 3:
+            printf("\n\nResult: %.2f Celsius equal to %.2f Kelvin\n\n", temperature, TempConFn(temperature, 3));
+            break;
+        case 4:
+            printf("\n\nResult: %.2f Kelvin equal to %.2f Celsius\n\n", temperature, TempConFn(temperature, 4));
+            break;
+        case 5:
+            printf("\n\nResult: %.2f Fahrenheit equal to %.2f Kelvin\n\n", temperature, TempConFn(temperature, 5));
+            break;
+        case 6:
+            printf("\n\nResult: %.2f Kelvin equal to %.2f Fahrenheit\n\n", temperature, TempConFn(temperature, 6));
+            break;
         }
-        else
-        {
-            printf("\n\nResult: %.2f Kelvin equal to %.2f Celsius\n\n", temperature, KelToCel(temperature));
-        }
-        break;
-    case 5:
-        printf("Enter temperature in Fahrenheit: ");
-        scanf("%f", &temperature);
-        printf("\n\nResult: %.2f Fahrenheit equal to %.2f Kelvin\n\n", temperature, FahToKel(temperature));
-        break;
-    case 6:
-        printf("Enter temperature in Kelvin: ");
-        scanf("%f", &temperature);
-        if (temperature < 0)
-        {
-            printf("Invalid input...\n");
-        }
-        else
-        {
-            printf("\n\nResult: %.2f Kelvin equal to %.2f Fahrenheit\n\n", temperature, KelToFah(temperature));
-        }
-        break;
+    }
+    else
+    {
+        printf("Invalid input...\n");
     }
 }
 void MassConversion()
@@ -148,9 +123,10 @@ void MassConversion()
     printf("\t1. Kg to Pound\n");
     printf("\t2. Pound to Kg\n");
     printf("Select conversion: ");
-    int option, mass, mass2;
+    int option;
+    float mass, mass2;
     scanf("%d", &option);
-    printf("Enter the mass in Kg: ");
+    printf("Enter the mass: ");
     scanf("%f", &mass);
     if (mass < 0)
     {
@@ -180,7 +156,7 @@ void LengthConversion()
     int option;
     float length;
     scanf("%d", &option);
-    printf("Enter length in Length: ");
+    printf("Enter the length: ");
     scanf("%f", &length);
     if (length < 0)
     {
