@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 float TempConFn(float a, int b);
-int AbsoluteTemperatureCheck(int a, int b);
+int AbsoluteTemperatureCheck(float a, int b);
 void PrintMenu();
 void TemperatureConversion();
 void MassConversion();
@@ -29,14 +29,14 @@ int main()
             LengthConversion();
             // Length conversion done
             break;
-        case 4:
+        case 4: //This part is to terminate the program
             return 0;
         }
     } while (1);
 
     return 0;
 }
-float TempConFn(float a, int b)
+float TempConFn(float a, int b) //This function converts the tempereture accordingly 
 {
     switch (b)
     {
@@ -56,11 +56,13 @@ float TempConFn(float a, int b)
         return (TempConFn(a, 2) + 273.15);
         break;
     case 6:
-        return (TempConFn(a, 4), 1);
+        return TempConFn(TempConFn(a, 4), 1);
         break;
+    default:
+        return 0;
     }
 }
-int AbsoluteTemperatureCheck(int a, int b)
+int AbsoluteTemperatureCheck(float a, int b) //checking for the absolute values of tempereture
 {
     if ((a < 0 && (b == 4 || b == 6)) || (a < -273.15 && (b == 1 || b == 3)) || (a < -459.67 && (b == 2 || b == 5)))
     {
