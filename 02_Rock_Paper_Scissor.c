@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-int ComputerTurn(int a);
-int WinnerPick(int a, int b);
-void ScoreDisplay(int a);
-int PlayerTurn();
+int ComputerTurn(int a); // This function decides the computer's turn.
+int WinnerPick(int a, int b); // Picks the winner in each round and tells the result.
+void ScoreDisplay(int a); // This one tells the score after each round ends also terminates and decides the final winner of the match.
+int PlayerTurn(); // This function takes the player moves and displays it.
 int main()
 {
     srand(time(NULL));
