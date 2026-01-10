@@ -2,15 +2,11 @@
 
 
 
-Here the first project 'multi-category-unit-converter' is a simple terminal based
+Here the first project '01_Unit_Converter.c' is a simple terminal based
+unit converter. Available Units are Temperature, Mass, Length.
 
-unit converter with some variety in Temperature, Mass, Length.
-
-
-
-Usage-instruction: compile using this command: "gcc multi-category-unit-converter.c -o converter"
-
+Usage-instruction: compile using this command: "gcc 01_Unit_Converter.c -o Converter"
 for this gcc must be installed.
+Run using the command: ./Converter => for both windows and Linux.
 
-Run using the command: ./converter => for both windows and Linux(can not tell about mac as i have not access to it).
-
+I have made the 2nd Project that is '02_Rock_Paper_Scissor.c' is a simple terminal based rock, paper, scissor game.
