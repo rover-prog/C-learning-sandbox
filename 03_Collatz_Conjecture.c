@@ -11,7 +11,7 @@ int main()
     CollatzConjecture(in);
     return 0;
 }
-void Statistics(long long int steps, long long int value)
+void Statistics(long long int steps, long long int value) // makes final statistics display
 {
     printf("\n--- Statistics ---\n");
     printf("Total Steps: %lld\n", steps);
@@ -19,6 +19,10 @@ void Statistics(long long int steps, long long int value)
 }
 void CollatzConjecture(long long int n)
 {
+    /* this function calculates the collatze conjecture
+    calculates steps and final total steps that is sent to statistics
+    calculates max value reached during collatz conjecture calculation
+    */
     static long long int step = 0, max = 0;
 
     do
@@ -48,6 +52,7 @@ void CollatzConjecture(long long int n)
 }
 long long int Input()
 {
+    // takes the input value for CollatzeConjecture to use
     long long int integer;
     do
     {
@@ -60,5 +65,6 @@ long long int Input()
 }
 void PrintStep(long long int a, long long step)
 {
+    // prints each step number and value 
     printf("Step %lld: %lld\n", step, a);
 }
