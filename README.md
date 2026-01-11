@@ -10,3 +10,6 @@ for this gcc must be installed.
 Run using the command: ./Converter => for both windows and Linux.
 
 I have made the 2nd Project that is '02_Rock_Paper_Scissor.c' is a simple terminal based rock, paper, scissor game.
+
+3rd Project is '03_Collatz_Conjecture.c' displays amd calculates the whole process of
+collatze conjecture logic.
