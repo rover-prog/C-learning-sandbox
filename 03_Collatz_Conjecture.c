@@ -56,7 +56,7 @@ long long int Input()
     long long int integer;
     do
     {
-        printf("Enter starting number: ");
+        printf("\n\nEnter starting number: ");
         scanf("%lld", &integer);
         if (integer < 1)
             printf("Try again..\n");
@@ -65,6 +65,6 @@ long long int Input()
 }
 void PrintStep(long long int a, long long step)
 {
-    // prints each step number and value 
+    // prints each step number and value
     printf("Step %lld: %lld\n", step, a);
 }
